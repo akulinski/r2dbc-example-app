@@ -1,0 +1,31 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet author="albert" id="2">
+        <createTable tableName="question">
+
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+
+            <column name="questionnaireId" type="BIGINT"/>
+
+            <column name="questionContent" type="VARCHAR(255)"/>
+
+            <column name="created" type="datetime"/>
+            <column name="modified" type="datetime"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseColumnNames="id"
+                                 baseTableName="question"
+                                 constraintName="fk_questionnaire_question "
+                                 deferrable="true"
+                                 initiallyDeferred="true"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="questionnaire"
+                                 validate="true"/>
+    </changeSet>
+</databaseChangeLog>

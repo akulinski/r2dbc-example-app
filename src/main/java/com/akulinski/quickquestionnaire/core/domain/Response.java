@@ -8,6 +8,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
+import java.time.Instant;
+
 @Table("response")
 @Data
 @Builder
@@ -21,5 +23,7 @@ public class Response {
 
   private String poster;
 
-  private Option option;
+  @Column private Instant created;
+
+  @Column private Instant modified;
 }

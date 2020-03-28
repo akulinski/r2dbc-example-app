@@ -8,6 +8,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
+import java.time.Instant;
+
 @Table("question")
 @Data
 @Builder
@@ -20,4 +22,8 @@ public class Question {
   @Column private Long questionnaireId;
 
   @Column private String questionContent;
+
+  @Column private Instant created;
+
+  @Column private Instant modified;
 }

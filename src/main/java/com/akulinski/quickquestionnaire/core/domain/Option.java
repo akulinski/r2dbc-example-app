@@ -8,6 +8,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
+import java.time.Instant;
+
 @Table("option")
 @Data
 @Builder
@@ -17,7 +19,11 @@ public class Option {
 
   @Id @Column private Long id;
 
-  private Long questionId;
+  @Column private Long questionId;
 
-  private String optionValue;
+  @Column private String optionValue;
+
+  @Column private Instant created;
+
+  @Column private Instant modified;
 }

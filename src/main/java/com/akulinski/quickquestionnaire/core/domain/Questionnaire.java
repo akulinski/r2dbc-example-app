@@ -23,7 +23,7 @@ public class Questionnaire {
 
   @Column private String poster;
 
-  private Instant created;
+  @Column private Instant created;
 
-  private Instant modified;
+  @Column private Instant modified;
 }

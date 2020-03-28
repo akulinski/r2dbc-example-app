@@ -9,6 +9,7 @@ import org.springframework.data.r2dbc.repository.config.EnableR2dbcRepositories;
 public class QuickquestionnaireApplication {
 
   public static void main(String[] args) {
+
     SpringApplication.run(QuickquestionnaireApplication.class, args);
   }
 }
