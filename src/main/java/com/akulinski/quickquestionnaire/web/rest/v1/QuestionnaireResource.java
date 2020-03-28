@@ -22,7 +22,7 @@ public class QuestionnaireResource {
 
   @PostMapping
   @ResponseStatus(HttpStatus.OK)
-  public Mono<QuestionnaireDTO> save(@RequestBody @Valid QuestionnaireDTO questionnaireDTO) {
+  public Mono<Long> save(@RequestBody @Valid QuestionnaireDTO questionnaireDTO) {
     return questionnaireService.createQuestionnaire(questionnaireDTO);
   }
 
@@ -34,13 +34,13 @@ public class QuestionnaireResource {
 
   @GetMapping("/{id}")
   @ResponseStatus(HttpStatus.OK)
-  public Mono<QuestionnaireDTO> findById(@PathVariable String id) {
+  public Mono<QuestionnaireDTO> findById(@PathVariable Long id) {
     return questionnaireService.findById(id);
   }
 
   @PostMapping("/add-question")
   @ResponseStatus(HttpStatus.OK)
-  public Mono<QuestionnaireDTO> addQuestion(@RequestBody @Valid QuestionDTO questionDTO) {
+  public Mono<Long> addQuestion(@RequestBody @Valid QuestionDTO questionDTO) {
     return questionnaireService.addQuestionToQuestionnaire(questionDTO);
   }
 }

@@ -1,7 +1,8 @@
 package com.akulinski.quickquestionnaire.core.service;
 
 import com.akulinski.quickquestionnaire.core.domain.Question;
-import com.akulinski.quickquestionnaire.core.repository.QuestionnaireRepository;
+import com.akulinski.quickquestionnaire.core.repository.IQuestionRepository;
+import com.akulinski.quickquestionnaire.core.repository.IQuestionnaireRepository;
 import com.akulinski.quickquestionnaire.core.service.dto.QuestionDTO;
 import com.akulinski.quickquestionnaire.core.service.dto.QuestionnaireDTO;
 import com.akulinski.quickquestionnaire.core.service.mappers.QuestionMapper;
@@ -18,36 +19,28 @@ import reactor.core.publisher.Mono;
 @Slf4j
 public class QuestionnaireService {
 
-  private final QuestionnaireRepository questionnaireRepository;
+  private final IQuestionnaireRepository questionnaireRepository;
+
+  private final IQuestionRepository questionRepository;
 
   private final QuestionnaireMapper questionnaireMapper;
 
   private final QuestionMapper questionMapper;
 
-  public Mono<QuestionnaireDTO> createQuestionnaire(@NonNull QuestionnaireDTO questionnaireDTO) {
-    return questionnaireRepository
-        .save(questionnaireMapper.asDO(questionnaireDTO))
-        .map(questionnaireMapper::asDTO);
+  public Mono<Long> createQuestionnaire(@NonNull QuestionnaireDTO questionnaireDTO) {
+    return questionnaireRepository.save(questionnaireMapper.asDO(questionnaireDTO));
   }
 
-  public Mono<QuestionnaireDTO> addQuestionToQuestionnaire(@NonNull QuestionDTO questionDTO) {
+  public Mono<Long> addQuestionToQuestionnaire(@NonNull QuestionDTO questionDTO) {
     final Question question = questionMapper.asDO(questionDTO);
-
-    return questionnaireRepository
-        .findById(questionDTO.getQuestionnaireId())
-        .flatMap(
-            questionnaire -> {
-              questionnaire.getQuestions().add(question);
-              return questionnaireRepository.save(questionnaire);
-            })
-        .map(questionnaireMapper::asDTO);
+    return questionRepository.save(question);
   }
 
   public Flux<QuestionnaireDTO> getAllQuestionnairesByPoster(@NonNull String poster) {
     return questionnaireRepository.findByPoster(poster).map(questionnaireMapper::asDTO);
   }
 
-  public Mono<QuestionnaireDTO> findById(String id) {
+  public Mono<QuestionnaireDTO> findById(@NonNull Long id) {
     return questionnaireRepository.findById(id).map(questionnaireMapper::asDTO);
   }
 }

@@ -1,35 +1,29 @@
 package com.akulinski.quickquestionnaire.core.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
-import org.springframework.data.annotation.CreatedDate;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.Instant;
-import java.util.HashSet;
-import java.util.Set;
 
-@Document
+@Table("questionnaire")
+@Builder
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class Questionnaire {
 
-  @Id private String id;
+  @Id @Column private Long id;
 
-  private String description;
+  @Column private String description;
 
-  @Indexed private String poster;
+  @Column private String poster;
 
-  private Set<Question> questions;
+  private Instant created;
 
-  @CreatedDate private Instant created;
-
-  @LastModifiedDate private Instant modified;
-
-  public Questionnaire() {
-    this.questions = new HashSet<>();
-  }
+  private Instant modified;
 }

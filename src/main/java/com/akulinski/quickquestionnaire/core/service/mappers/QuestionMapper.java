@@ -7,6 +7,7 @@ import org.mapstruct.ReportingPolicy;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.WARN)
 public interface QuestionMapper {
+
   QuestionDTO asDTO(Question question);
 
   Question asDO(QuestionDTO questionDTO);

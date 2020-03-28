@@ -1,7 +1,8 @@
 package com.akulinski.quickquestionnaire.core.repository;
 
-import com.akulinski.quickquestionnaire.core.domain.Questionnaire;
+import com.akulinski.quickquestionnaire.core.domain.Question;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.r2dbc.core.DatabaseClient;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
@@ -11,36 +12,36 @@ import static org.springframework.data.r2dbc.query.Criteria.where;
 
 @Repository
 @RequiredArgsConstructor
-public class QuestionnaireRepository implements IQuestionnaireRepository {
-
+@Slf4j
+public class QuestionRepository implements IQuestionRepository {
   private final DatabaseClient databaseClient;
 
   @Override
-  public Mono<Questionnaire> findById(Long id) {
+  public Mono<Question> findById(Long id) {
     return databaseClient
         .select()
-        .from(Questionnaire.class)
+        .from(Question.class)
         .matching(where("id").is(id))
         .fetch()
         .first();
   }
 
   @Override
-  public Flux<Questionnaire> findByPoster(String poster) {
+  public Flux<Question> findByQuestionnaireId(Long id) {
     return databaseClient
         .select()
-        .from(Questionnaire.class)
-        .matching(where("poster").like(poster))
+        .from(Question.class)
+        .matching(where("questionnaireId").is(id))
         .fetch()
         .all();
   }
 
   @Override
-  public Mono<Long> save(Questionnaire questionnaire) {
+  public Mono<Long> save(Question question) {
     return databaseClient
         .insert()
-        .into(Questionnaire.class)
-        .using(questionnaire)
+        .into(Question.class)
+        .using(question)
         .fetch()
         .one()
         .map(q -> (Long) q.get("id"));

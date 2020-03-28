@@ -1,20 +1,23 @@
 package com.akulinski.quickquestionnaire.core.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
 
-import java.util.Set;
-
-@Document
+@Table("question")
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Question {
-  private String questionContent;
 
-  private Set<Response> responses;
+  @Id @Column private Long id;
 
-  private Set<Option> options;
+  @Column private Long questionnaireId;
+
+  @Column private String questionContent;
 }

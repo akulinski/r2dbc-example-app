@@ -1,0 +1,11 @@
+version: '2'
+services:
+  quickquestionnaire-postgresql:
+    image: postgres:12.2
+    # volumes:
+    #     - ~/volumes/jhipster/flatterservermonolith/postgresql/:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=quickquestionnaire
+      - POSTGRES_PASSWORD=quickquestionnaire
+    ports:
+      - 5432:5432

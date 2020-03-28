@@ -9,7 +9,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ResponseDTO {
-    private String poster;
 
-    private Option option;
+  private String questionId;
+
+  private String poster;
+
+  private Option option;
 }
