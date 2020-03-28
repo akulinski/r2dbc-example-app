@@ -9,7 +9,7 @@
                 <constraints primaryKey="true"/>
             </column>
 
-            <column name="questionId" type="BIGINT"/>
+            <column name="question_id" type="BIGINT"/>
 
             <column name="poster" type="VARCHAR(255)"/>
 
@@ -18,9 +18,9 @@
             <column name="modified" type="datetime"/>
         </createTable>
 
-        <addForeignKeyConstraint baseColumnNames="id"
+        <addForeignKeyConstraint baseColumnNames="question_id"
                                  baseTableName="response"
-                                 constraintName="fk_response_question "
+                                 constraintName="fk_response_question"
                                  deferrable="true"
                                  initiallyDeferred="true"
                                  onDelete="CASCADE"

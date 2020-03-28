@@ -19,9 +19,11 @@ public class Option {
 
   @Id @Column private Long id;
 
-  @Column private Long questionId;
+  @Column("question_id")
+  private Long questionId;
 
-  @Column private String optionValue;
+  @Column("option_value")
+  private String optionValue;
 
   @Column private Instant created;
 

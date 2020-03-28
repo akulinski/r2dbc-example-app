@@ -19,9 +19,10 @@ public class Response {
 
   @Id @Column private Long id;
 
+  @Column("question_id")
   private String questionId;
 
-  private String poster;
+  @Column private String poster;
 
   @Column private Instant created;
 

@@ -19,9 +19,11 @@ public class Question {
 
   @Id @Column private Long id;
 
-  @Column private Long questionnaireId;
+  @Column("questionnaire_id")
+  private Long questionnaireId;
 
-  @Column private String questionContent;
+  @Column("question_content")
+  private String questionContent;
 
   @Column private Instant created;
 

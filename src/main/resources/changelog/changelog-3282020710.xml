@@ -9,15 +9,15 @@
                 <constraints primaryKey="true"/>
             </column>
 
-            <column name="questionnaireId" type="BIGINT"/>
+            <column name="questionnaire_id" type="BIGINT"/>
 
-            <column name="questionContent" type="VARCHAR(255)"/>
+            <column name="question_content" type="VARCHAR(255)"/>
 
             <column name="created" type="datetime"/>
             <column name="modified" type="datetime"/>
         </createTable>
 
-        <addForeignKeyConstraint baseColumnNames="id"
+        <addForeignKeyConstraint baseColumnNames="questionnaire_id"
                                  baseTableName="question"
                                  constraintName="fk_questionnaire_question "
                                  deferrable="true"
