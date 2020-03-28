@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import javax.validation.Valid;
@@ -23,6 +24,18 @@ public class QuestionnaireResource {
   @ResponseStatus(HttpStatus.OK)
   public Mono<QuestionnaireDTO> save(@RequestBody @Valid QuestionnaireDTO questionnaireDTO) {
     return questionnaireService.createQuestionnaire(questionnaireDTO);
+  }
+
+  @GetMapping("/poster/{poster}")
+  @ResponseStatus(HttpStatus.OK)
+  public Flux<QuestionnaireDTO> getAllQuestionnairesByPoster(@PathVariable String poster) {
+    return questionnaireService.getAllQuestionnairesByPoster(poster);
+  }
+
+  @GetMapping("/{id}")
+  @ResponseStatus(HttpStatus.OK)
+  public Mono<QuestionnaireDTO> findById(@PathVariable String id) {
+    return questionnaireService.findById(id);
   }
 
   @PostMapping("/add-question")

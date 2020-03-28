@@ -11,6 +11,9 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 public class QuestionnaireDTO {
 
+  @Size(max=1000)
+  private String id;
+
   @Size(max = 1000, min = 1)
   private String description;
 
