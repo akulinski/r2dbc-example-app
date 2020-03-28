@@ -22,6 +22,9 @@ public class Response {
   @Column("question_id")
   private String questionId;
 
+  @Column("option_id")
+  private Long optionId;
+
   @Column private String poster;
 
   @Column private Instant created;

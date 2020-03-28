@@ -1,5 +1,6 @@
 package com.akulinski.quickquestionnaire.core.service;
 
+import com.akulinski.quickquestionnaire.core.domain.Response;
 import com.akulinski.quickquestionnaire.core.repository.IQuestionRepository;
 import com.akulinski.quickquestionnaire.core.repository.IResponseRepository;
 import com.akulinski.quickquestionnaire.core.service.dto.QuestionDTO;
@@ -35,6 +36,9 @@ public class QuestionService {
   }
 
   public void addResponse(ResponseDTO responseDTO) {
-    responseRepository.save(responseMapper.asDO(responseDTO));
+
+    final Response response = responseMapper.asDO(responseDTO);
+
+    responseRepository.save(response);
   }
 }
