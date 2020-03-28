@@ -5,3 +5,9 @@ spring:
       database: quickquestionnaire
       repositories:
         type: auto
+
+
+logging:
+  level:
+    com:
+      akulinski: debug
