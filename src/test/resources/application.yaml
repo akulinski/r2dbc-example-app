@@ -1,5 +1,5 @@
 spring:
   r2dbc:
-    url: r2dbc:postgresql://localhost/quickquestionnaire
+    initialization-mode: always
     username: quickquestionnaire
     password: quickquestionnaire

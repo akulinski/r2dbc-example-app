@@ -2,12 +2,8 @@ package com.akulinski.quickquestionnaire.core.repository;
 
 import com.akulinski.quickquestionnaire.core.domain.Option;
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
-public interface IOptionRepository {
-  Mono<Long> save(Option option);
+public interface IOptionRepository extends BaseApplicationRepository<Option> {
 
   Flux<Option> findByQuestionId(Long questionId);
-
-  Flux<Option> findById(Long id);
 }

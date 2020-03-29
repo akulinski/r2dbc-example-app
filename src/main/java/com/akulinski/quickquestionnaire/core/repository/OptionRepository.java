@@ -29,6 +29,17 @@ public class OptionRepository implements IOptionRepository {
   }
 
   @Override
+  public void delete(Option option) {
+    databaseClient
+        .delete()
+        .from(Option.class)
+        .matching(where("id").is(option.getId()))
+        .fetch()
+        .rowsUpdated()
+        .subscribe();
+  }
+
+  @Override
   public Flux<Option> findByQuestionId(Long questionId) {
     return databaseClient
         .select()
@@ -39,7 +50,7 @@ public class OptionRepository implements IOptionRepository {
   }
 
   @Override
-  public Flux<Option> findById(Long id) {
-    return databaseClient.select().from(Option.class).matching(where("id").is(id)).fetch().all();
+  public Mono<Option> findById(Long id) {
+    return databaseClient.select().from(Option.class).matching(where("id").is(id)).fetch().first();
   }
 }

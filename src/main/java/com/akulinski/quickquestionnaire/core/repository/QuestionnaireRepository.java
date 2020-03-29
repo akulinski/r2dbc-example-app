@@ -45,4 +45,15 @@ public class QuestionnaireRepository implements IQuestionnaireRepository {
         .one()
         .map(q -> (Long) q.get("id"));
   }
+
+  @Override
+  public void delete(Questionnaire questionnaire) {
+    databaseClient
+        .delete()
+        .from(Questionnaire.class)
+        .matching(where("id").is(questionnaire.getId()))
+        .fetch()
+        .rowsUpdated()
+        .subscribe();
+  }
 }
