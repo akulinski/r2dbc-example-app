@@ -8,5 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class OptionDTO {
-    private String optionValue;
+  private String optionValue;
+  private String questionId;
 }

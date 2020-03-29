@@ -20,7 +20,7 @@ public class Response {
   @Id @Column private Long id;
 
   @Column("question_id")
-  private String questionId;
+  private Long questionId;
 
   @Column("option_id")
   private Long optionId;

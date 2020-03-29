@@ -1,6 +1,7 @@
 package com.akulinski.quickquestionnaire.web.rest.v1;
 
 import com.akulinski.quickquestionnaire.core.service.QuestionService;
+import com.akulinski.quickquestionnaire.core.service.dto.OptionDTO;
 import com.akulinski.quickquestionnaire.core.service.dto.QuestionDTO;
 import com.akulinski.quickquestionnaire.core.service.dto.ResponseDTO;
 import lombok.RequiredArgsConstructor;
@@ -32,9 +33,15 @@ public class QuestionResource {
     return questionService.findByQuestionnaireId(id);
   }
 
+  @PostMapping("/add-option")
+  @ResponseStatus(HttpStatus.OK)
+  public Mono<Long> addOption(@RequestBody OptionDTO optionDTO) {
+    return questionService.addOption(optionDTO);
+  }
+
   @PostMapping("/add-response")
   @ResponseStatus(HttpStatus.OK)
-  public void addResponse(@RequestBody @Valid ResponseDTO responseDTO) {
-    questionService.addResponse(responseDTO);
+  public Mono<Long> addResponse(@RequestBody @Valid ResponseDTO responseDTO) {
+    return questionService.addResponse(responseDTO);
   }
 }
