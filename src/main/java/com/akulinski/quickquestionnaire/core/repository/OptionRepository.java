@@ -37,4 +37,9 @@ public class OptionRepository implements IOptionRepository {
         .fetch()
         .all();
   }
+
+  @Override
+  public Flux<Option> findById(Long id) {
+    return databaseClient.select().from(Option.class).matching(where("id").is(id)).fetch().all();
+  }
 }

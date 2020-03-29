@@ -8,4 +8,6 @@ public interface IOptionRepository {
   Mono<Long> save(Option option);
 
   Flux<Option> findByQuestionId(Long questionId);
+
+  Flux<Option> findById(Long id);
 }

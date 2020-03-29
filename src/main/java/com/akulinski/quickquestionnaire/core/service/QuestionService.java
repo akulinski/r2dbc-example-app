@@ -19,7 +19,6 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.HashSet;
-import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -45,12 +44,12 @@ public class QuestionService {
         optionRepository.findByQuestionId(id).map(optionMapper::asDTO).collectList();
 
     return questionDTOMono
-            .zipWith(listMono)
-            .map(
-                    t -> {
-                      t.getT1().setOptions(new HashSet<>(t.getT2()));
-                      return t.getT1();
-                    });
+        .zipWith(listMono)
+        .map(
+            t -> {
+              t.getT1().setOptions(new HashSet<>(t.getT2()));
+              return t.getT1();
+            });
   }
 
   public Flux<QuestionDTO> findByQuestionnaireId(@NonNull Long questionnaireId) {
